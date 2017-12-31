@@ -7,14 +7,14 @@ var React = require('react');
 // Task #1: Fill the `renderNameComponent` function. It should render ReactElement
 //          into the DOM.
 class Name extends React.Component {
-  render() {
-    return (<p id="hello">Bazinga!</p>);
-  }
+    render() {
+        return <p id="hello">Bazinga!</p>;
+    }
 }
 
 // See you got a domNode passed as a `domNode` argument.
 function renderNameComponent(domNode) {
-  // Put your code here
+    React.render(<Name />, domNode);
 }
 
 // Hint: You have to use the `React.render(ReactElement element, DOMNode node)` method.

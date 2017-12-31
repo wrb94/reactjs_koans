@@ -1,4 +1,4 @@
-var React = require("react");
+var React = require('react');
 
 // Let's get to the most important feature of React.js - reactive state.
 //
@@ -48,45 +48,51 @@ var React = require("react");
 // Further reading on task #2: https://facebook.github.io/react/tips/if-else-in-JSX.html
 
 class WhatsYourName extends React.Component {
-  // By default `this.state` is `null`. In `render` we are referring to
-  // a specific element from the `state` object - `this.state.name`.
-  // If we don't set an initial state, we will get an error. It's impossible to fetch
-  // an object key from `null`.
-  //
-  // Think about it: you can set name from a cookie on component initialization!
-  //                 What else could you do here?
+    // By default `this.state` is `null`. In `render` we are referring to
+    // a specific element from the `state` object - `this.state.name`.
+    // If we don't set an initial state, we will get an error. It's impossible to fetch
+    // an object key from `null`.
+    //
+    // Think about it: you can set name from a cookie on component initialization!
+    //                 What else could you do here?
 
-  constructor(props) {
-    // Properties object is called `props`. You can access it with `this.props`.
-    // We won't use it in this exercise.
-    super(props);
-    this.state = { name: "" };
+    constructor(props) {
+        // Properties object is called `props`. You can access it with `this.props`.
+        // We won't use it in this exercise.
+        super(props);
+        this.state = {
+            name: ''
+        };
 
-    // Warning! If we don't bind this method - we would not be able to update state.
-    this.onNameChange = this.onNameChange.bind(this);
-  }
+        // Warning! If we don't bind this method - we would not be able to update state.
+        this.onNameChange = this.onNameChange.bind(this);
+    }
 
-  // `event` is the only argument passed to that method. It will be an event
-  // object thrown by React on actions like `click`, `change` etc.
-  //
-  // You need to correct the call of `setState` method. Just try to set
-  // the `name` field to the value passed in event.
-  //
-  // Hint: use `console.log` to check `event.target`. You will find text
-  //       entered to the input there.
-  onNameChange(event) {
-    // Huh... There's something wrong here...
-    this.setState({bad_attribute: "ChangeME!"});
-  }
+    // `event` is the only argument passed to that method. It will be an event
+    // object thrown by React on actions like `click`, `change` etc.
+    //
+    // You need to correct the call of `setState` method. Just try to set
+    // the `name` field to the value passed in event.
+    //
+    // Hint: use `console.log` to check `event.target`. You will find text
+    //       entered to the input there.
+    onNameChange(event) {
+        this.setState({
+            name: event.currentTarget.value
+        });
+    }
 
-  render() {
-    return (
-      <div>
-        <p>Hello {this.state.name}</p>
-        <input type="text" name="name" onChange={this.onNameChange} />
-      </div>
-    );
-  }
+    render() {
+        var textToDisplay = '';
+        if (this.state.name) textToDisplay = 'Hello ' + this.state.name;
+        else textToDisplay = 'Hey there. Enter your name.';
+        return (
+            <div>
+                <p>{textToDisplay}</p>
+                <input type="text" name="name" onChange={this.onNameChange} />
+            </div>
+        );
+    }
 }
 
 // Notice some details here:

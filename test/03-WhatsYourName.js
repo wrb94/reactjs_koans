@@ -1,6 +1,6 @@
 import WhatsYourName from '../src/03-WhatsYourName.js';
 
-describe("03 - What's Your Name?", () => {
+describe.skip("03 - What's Your Name?", () => {
   var component;
   var paragraphs;
   var inputs;

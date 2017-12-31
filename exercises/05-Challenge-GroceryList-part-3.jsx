@@ -1,4 +1,4 @@
-var React = require("react");
+var React = require('react');
 
 // Task: User needs to be able to clear whole grocery list in one click.
 //       Render a proper button under your list and implement the `clearList` method.
@@ -14,77 +14,88 @@ var React = require("react");
 //             `GroceryList` rendering method.
 
 class GroceryList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      groceries: [
-        { name: "Apples" }
-      ],
-      newGroceryName: ""
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            groceries: [{ name: 'Apples' }],
+            newGroceryName: ''
+        };
 
-    this.addGroceryItem = this.addGroceryItem.bind(this);
-    this.clearList = this.clearList.bind(this);
-    this.inputChanged = this.inputChanged.bind(this);
-  }
-
-  inputChanged(event) {
-    this.setState({ newGroceryName: event.target.value });
-  }
-
-  addGroceryItem() {
-    if(this.state.newGroceryName) {
-      let newGroceryItem = { name: this.state.newGroceryName };
-      this.setState({
-        groceries: this.state.groceries.concat([newGroceryItem])
-      });
-    }
-  }
-
-  // Fill the definition of the following method to allow clearing the list
-  // Hint: You can just simply set the groceries to an empty array.
-  clearList() {
-    // Put your code here
-  }
-
-  render() {
-    let groceriesComponents = [],
-        newProductInput,
-        newProductAddButton,
-        clearListButton;
-
-    for(var index = 0; index < this.state.groceries.length; index++) {
-      groceriesComponents.push(
-          <GroceryListItem
-            grocery={this.state.groceries[index]}
-          />
-      );
+        this.addGroceryItem = this.addGroceryItem.bind(this);
+        this.clearList = this.clearList.bind(this);
+        this.inputChanged = this.inputChanged.bind(this);
     }
 
-    newProductInput = <input className='new-item' type="text" onChange={this.inputChanged}/>;
-    newProductAddButton = <button className='add-product' onClick={this.addGroceryItem}>Add new Product</button>;
-    clearListButton = <button onClick={this.clearList} className='clear-list'>Clear the List</button>;
+    inputChanged(event) {
+        this.setState({ newGroceryName: event.target.value });
+    }
 
-    return (
-      <div>
-        <ul>
-          {groceriesComponents}
-        </ul>
-        {newProductInput}
-        {newProductAddButton}
-      </div>
-    );
-  }
+    addGroceryItem() {
+        if (this.state.newGroceryName) {
+            let newGroceryItem = { name: this.state.newGroceryName };
+            this.setState({
+                groceries: this.state.groceries.concat([newGroceryItem])
+            });
+        }
+    }
+
+    // Fill the definition of the following method to allow clearing the list
+    // Hint: You can just simply set the groceries to an empty array.
+    clearList() {
+        this.setState({
+            groceries: []
+        });
+    }
+
+    render() {
+        let groceriesComponents = [],
+            newProductInput,
+            newProductAddButton,
+            clearListButton;
+
+        for (var index = 0; index < this.state.groceries.length; index++) {
+            groceriesComponents.push(
+                <GroceryListItem grocery={this.state.groceries[index]} />
+            );
+        }
+
+        newProductInput = (
+            <input
+                className="new-item"
+                type="text"
+                onChange={this.inputChanged}
+            />
+        );
+        newProductAddButton = (
+            <button className="add-product" onClick={this.addGroceryItem}>
+                Add new Product
+            </button>
+        );
+        clearListButton = (
+            <button onClick={this.clearList} className="clear-list">
+                Clear the List
+            </button>
+        );
+
+        return (
+            <div>
+                <ul>{groceriesComponents}</ul>
+                {newProductInput}
+                {newProductAddButton}
+                {clearListButton}
+            </div>
+        );
+    }
 }
 
 class GroceryListItem extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+    }
 
-  render() {
-    return (<li>{this.props.grocery.name}</li>);
-  }
+    render() {
+        return <li>{this.props.grocery.name}</li>;
+    }
 }
 
 export default GroceryList;

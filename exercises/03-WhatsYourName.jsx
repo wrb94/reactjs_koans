@@ -78,7 +78,7 @@ class WhatsYourName extends React.Component {
     //       entered to the input there.
     onNameChange(event) {
         this.setState({
-            name: event.currentTarget.value
+            name: event.target.value
         });
     }
 

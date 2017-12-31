@@ -11,4 +11,5 @@ build/Release
 node_modules
 *.module-cache
 src
-exercises
+.vscode
+.idea
